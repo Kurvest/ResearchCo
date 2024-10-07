@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for professional in professionals %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ professional.image.url }}" class="card-img-top" alt="{{ professional.user.username }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ professional.user.username }}</h5>
+                    <p class="card-text">{{ professional.profession }}</p>
+                    <a href="{% url 'project_detail' professional.id %}" class="btn btn-primary">View Projects</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

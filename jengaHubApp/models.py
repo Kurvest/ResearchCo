@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 class Professional(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
-    profile_image = models.ImageField(upload_to='profiles/')
+    profile_image = models.ImageField(upload_to='profiles/',default='default.png')
     profession = models.CharField(max_length=100)
-    
+
 class Project(models.Model):
     professional = models.ForeignKey(Professional, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    image = models.ImageField(upload_to='projects/')
+    image = models.ImageField(upload_to='projects/',default='default.png')
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
        return self.title
