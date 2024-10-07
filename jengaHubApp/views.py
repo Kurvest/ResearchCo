@@ -1,14 +1,16 @@
 from django.shortcuts import render
-
-
-from rest_framework import viewsets
 from .models import Project, Feedback
-from .serializers import ProjectSerializer, FeedbackSerializer
 
-class ProjectViewSet(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+from django.shortcuts import render, get_object_or_404
+from .models import Professional, Project
 
-class FeedbackViewSet(viewsets.ModelViewSet):
-    queryset = Feedback.objects.all()
-    serializer_class = FeedbackSerializer
+def professional_profile(request, professional_id):
+    professional = get_object_or_404(Professional, id=professional_id)
+    projects = Project.objects.filter(professional=professional)
+    return render(request, 'projects/profile.html', {'professional': professional, 'projects': projects})
+
+def add_project(request):
+    if request.method == 'POST':
+        # Handle project creation form
+        pass
+    return render(request, 'projects/add_project.html')
