@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | BuildHub{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Welcome to BuildHub</h1>
-<p>Your platform to find the best professionals and projects in construction.</p>
+<div class="jumbotron text-center bg-primary text-white p-5">
+    <h1>Welcome to BuildHub</h1>
+    <p>Explore our latest projects and connect with professionals.</p>
+    <a href="{% url 'jengaHubApp:projects' %}" class="btn btn-light btn-lg">View Projects</a>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <h2>Professionals</h2>
+        <p>Find top-rated professionals in the construction industry.</p>
+        <a href="{% url 'jengaHubApp:professionals' %}" class="btn btn-primary">Find Professionals</a>
+    </div>
+    <div class="col-md-4">
+        <h2>Projects</h2>
+        <p>Browse through our extensive portfolio of completed projects.</p>
+        <a href="{% url 'jengaHubApp:projects' %}" class="btn btn-primary">View Projects</a>
+    </div>
+    <div class="col-md-4">
+        <h2>Contact Us</h2>
+        <p>Need help? Get in touch with us for more information.</p>
+        <a href="{% url 'jengaHubApp:contact' %}" class="btn btn-primary">Contact</a>
+    </div>
+</div>
 {% endblock %}

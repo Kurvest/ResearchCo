@@ -43,3 +43,31 @@ button {
 button:hover {
     background-color: #45a049;
 }
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.jumbotron {
+    background-image: url('/static/images/construction-background.jpg');
+    background-size: cover;
+    color: white;
+    padding: 100px 25px;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+footer ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}

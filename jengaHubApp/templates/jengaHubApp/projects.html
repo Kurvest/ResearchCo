@@ -1,21 +1,25 @@
-{% extends 'profiles/base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Projects by {{ profile.user.username }}{% endblock %}
 
 {% block content %}
-<h1>Projects by {{ profile.user.username }}</h1>
-<div class="projects">
+<h1>Projects for {{ professional.user }}</h1>
+
+<h1>{{ professional.name }}</h1>
+<p>Profession: {{ professional.profession }}</p>
+<!-- Add other details like bio, contact info, etc. -->
+
+<h2>Projects:</h2>
+<ul>
     {% for project in projects %}
-    <div class="project-card">
-        <img src="{{ project.image.url }}" alt="{{ project.title }}">
-        <h2>{{ project.title }}</h2>
-        <p>{{ project.description }}</p>
-    </div>
+        <li>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        </li>
+    {% empty %}
+        <p>This professional has no projects yet.</p>
     {% endfor %}
-</div>
-<form method="POST" action="{% url 'send_message' profile.id %}">
-    {% csrf_token %}
-    <textarea name="message" required></textarea>
-    <button type="submit">Send Message</button>
-</form>
+</ul>
+
 {% endblock %}
