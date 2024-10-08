@@ -6,9 +6,12 @@ class Professional(models.Model):
     bio = models.TextField()
     profile_image = models.ImageField(upload_to='profiles/',default='default.png')
     profession = models.CharField(max_length=100)
+    contact_info = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.user.username
 class Project(models.Model):
-    professional = models.ForeignKey(Professional, on_delete=models.CASCADE)
+    professional = models.ForeignKey(Professional, on_delete=models.CASCADE, related_name='projects')
     title = models.CharField(max_length=255)
     description = models.TextField()
     image = models.ImageField(upload_to='projects/',default='default.png')
@@ -21,3 +24,10 @@ class Feedback(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipient = models.ForeignKey(Professional, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    feedback = models.BooleanField(default=False)
