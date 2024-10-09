@@ -71,3 +71,46 @@ footer ul li a {
 footer ul li a:hover {
     text-decoration: underline;
 }
+.professional {
+    margin-bottom: 20px;
+}
+
+.professional img {
+    width: 100px;  /* Adjust the size */
+    height: 100px; /* Keep the height equal to the width for a perfect circle */
+    border-radius: 50%;  /* This makes the image round */
+    object-fit: cover;  /* Ensures the image covers the container without distortion */
+}
+
+.professionals-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.professional {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px;
+}
+
+.project {
+    margin-bottom: 20px;
+}
+
+.project img {
+    width: 100%;  /* Full width for images */
+    max-width: 400px;  /* Limit the max width */
+    height: auto;
+    border-radius: 10px;
+}
+
+.projects-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px;
+}

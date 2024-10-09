@@ -52,29 +52,45 @@ def add_project(request):
 
 
 # Projects page view
-def projects(request):
-    return render(request, 'jengaHubApp:projects.html')
+def projects(request, professional_id):
+    # Get the professional by their id
+    professional = get_object_or_404(Professional, id=professional_id)
+
+    # Get all projects related to that professional
+    projects = Project.objects.filter(professional=professional)
+
+    # Pass the professional and their projects to the template
+    return render(request, 'jengaHubApp/projects.html', {
+        'professional': professional,
+        'projects': projects
+    })
 
 # Professionals page view
 def professionals(request):
-    return render(request, 'jengaHubApp:professionals.html')
+    all_professionals = Professional.objects.all()
+    
+    context = {
+        'professionals': all_professionals
+    }
+    
+    return render(request, 'jengaHubApp/professionals.html', context)
 
 # Contact page view
 def contact(request):
-    return render(request, 'jengahubApp:contact.html')
+    return render(request, 'jengahubApp/contact.html')
 
 # Profile page view (requires login)
 def profile(request):
-    return render(request, 'jengaHubApp:profile.html')
+    return render(request, 'jengaHubApp/profile.html')
 
 # About page view
 def about(request):
-    return render(request, 'jengaHubApp:about.html')
+    return render(request, 'jengaHubApp/about.html')
 
 # Privacy policy page view
 def privacy(request):
-    return render(request, 'jengaHubApp:privacy.html')
+    return render(request, 'jengaHubApp/privacy.html')
 
 # Terms of service page view
 def terms(request):
-    return render(request, 'jengaHubApp:terms.html')
+    return render(request, 'jengaHubApp/terms.html')

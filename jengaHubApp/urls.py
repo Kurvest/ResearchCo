@@ -17,6 +17,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('privacy/', views.privacy, name='privacy'),
     path('terms/', views.terms, name='terms'),
+    path('projects/<int:professional_id>/', views.projects, name='projects'),
 ]
 
 urlpatterns += [
