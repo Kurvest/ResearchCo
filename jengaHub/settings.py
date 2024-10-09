@@ -28,6 +28,9 @@ SECRET_KEY = 'django-insecure-t))g_j*hum@r3qp00a1xo94obf@rb32)ddnn704jvs^li3po2a
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'  # Redirect to homepage after login
+
 
 
 # Application definition
