@@ -2,6 +2,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Professional, Project
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
@@ -11,10 +13,11 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Log the user in after successful signup
-            return redirect('home')  # Redirect to home page after signup
+            #HttpResponseRedirect(reverse(''))
+            return redirect('jengaHubApp:home')  # Redirect to home page after signup
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'jengaHubApp/signup.html', {'form': form})
 
 
 def home(request):
@@ -50,28 +53,28 @@ def add_project(request):
 
 # Projects page view
 def projects(request):
-    return render(request, 'projects.html')
+    return render(request, 'jengaHubApp:projects.html')
 
 # Professionals page view
 def professionals(request):
-    return render(request, 'professionals.html')
+    return render(request, 'jengaHubApp:professionals.html')
 
 # Contact page view
 def contact(request):
-    return render(request, 'contact.html')
+    return render(request, 'jengahubApp:contact.html')
 
 # Profile page view (requires login)
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'jengaHubApp:profile.html')
 
 # About page view
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'jengaHubApp:about.html')
 
 # Privacy policy page view
 def privacy(request):
-    return render(request, 'privacy.html')
+    return render(request, 'jengaHubApp:privacy.html')
 
 # Terms of service page view
 def terms(request):
-    return render(request, 'terms.html')
+    return render(request, 'jengaHubApp:terms.html')
