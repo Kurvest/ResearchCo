@@ -1,116 +1,50 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-}
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #007bff; /* Optional: add a border to match your theme */
+}
+.professional .card-body {
     text-align: center;
+    border: none; 
 }
 
-.profiles, .projects {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 20px;
+
+
+.container {
+    padding-top: 0px;
 }
 
-.profile-card, .project-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: white;
-    margin: 10px;
-    padding: 15px;
-    width: 300px;
+/* Style the project cards */
+.card {
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
-.profile-card img, .project-card img {
-    width: 100%;
-    border-radius: 5px;
+/* Hover effect to make the cards interactive */
+.card:hover {
+
+    transform: translateY(-15px); /* Larger translation and slight rotation */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+/* Ensure images are responsive and have a consistent look */
+.card-img-top {
+    object-fit: cover;
+    height: 200px; /* Fixed height to maintain uniformity */
 }
 
-button:hover {
-    background-color: #45a049;
-}
-body {
-    font-family: 'Arial', sans-serif;
-}
-
-.jumbotron {
-    background-image: url('/static/images/construction-background.jpg');
-    background-size: cover;
-    color: white;
-    padding: 100px 25px;
+/* Styling for card title */
+.card-title {
+    font-weight: 600;
+    color: #007bff; /* Primary color to match theme */
 }
 
-footer ul {
-    list-style-type: none;
-}
-
-footer ul li {
-    display: inline;
-    margin-right: 10px;
-}
-
-footer ul li a {
-    color: black;
-    text-decoration: none;
-}
-
-footer ul li a:hover {
-    text-decoration: underline;
-}
-.professional {
-    margin-bottom: 20px;
-}
-
-.professional img {
-    width: 100px;  /* Adjust the size */
-    height: 100px; /* Keep the height equal to the width for a perfect circle */
-    border-radius: 50%;  /* This makes the image round */
-    object-fit: cover;  /* Ensures the image covers the container without distortion */
-}
-
-.professionals-list {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.professional {
-    width: 100%;
-    max-width: 300px;
-    margin: 10px;
-}
-
-.project {
-    margin-bottom: 20px;
-}
-
-.project img {
-    width: 100%;  /* Full width for images */
-    max-width: 400px;  /* Limit the max width */
-    height: auto;
-    border-radius: 10px;
-}
-
-.projects-list {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.project {
-    width: 100%;
-    max-width: 400px;
-    margin: 10px;
+/* Adjust text appearance for project descriptions */
+.card-text {
+    color: #6c757d;
 }

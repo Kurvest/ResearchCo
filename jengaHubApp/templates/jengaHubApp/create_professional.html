@@ -1,0 +1,17 @@
+<!-- create_professional.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Create Professional Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome {{ professional.user.username }}</h2>
+    <h2 class="text-center mb-4">Create Your Professional Profile</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Create Profile</button>
+    </form>
+</div>
+{% endblock %}

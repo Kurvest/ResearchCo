@@ -18,6 +18,8 @@ urlpatterns = [
     path('privacy/', views.privacy, name='privacy'),
     path('terms/', views.terms, name='terms'),
     path('projects/<int:professional_id>/', views.projects, name='projects'),
+    path('send_message/<int:professional_id>/', views.send_message, name='send_message'),
+    path('create-professional/', views.create_professional, name='create_professional'),
 ]
 
 urlpatterns += [
