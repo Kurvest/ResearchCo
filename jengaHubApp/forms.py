@@ -1,16 +1,18 @@
 from django import forms
-from .models import Professional
-
-# forms.py
-from django import forms
+from .models import Professional, Project
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Professional
 
 class UserSignUpForm(UserCreationForm):
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+    def __init__(self, *args, **kwargs):
+        super(UserSignUpForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control'})
 
 class ProfessionalForm(forms.ModelForm):
     class Meta:
@@ -21,4 +23,14 @@ class ProfessionalForm(forms.ModelForm):
             'profile_image': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
             'profession': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Profession'}),
             'contact_info': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact Information'}),
+        }
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['title', 'description', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
         }

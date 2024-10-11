@@ -1,0 +1,40 @@
+<!-- jengaHubApp/templates/jengaHubApp/trending_news.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="color: #3498db;">Trending News</h1>
+    <div class="row">
+        {% for news in news_list %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card shadow-sm">
+                {% if news.image.url %}
+                    <img src="{{ news.image.url }}" class="card-img-top" alt="Image for {{ news.title }}">
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ news.title }}</h5>
+                    <p class="card-text">
+                        {% if news.content %}
+                            <strong>{{ news.content|truncatewords:20 }}</strong>  <!-- Shorten the content to 20 words -->
+                        {% else %}
+                        
+                        {% endif %}
+                    </p>
+                    <p class="card-text">{{ news.description }}</p>
+                    <p class="card-text d-none full-content">
+                        <strong>{{ news.content }}</strong>
+                    </p>
+                    <button class="btn btn-primary read-more-btn">Read More</button>
+                    <button class="btn btn-secondary d-none read-less-btn">Read Less</button>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">No trending news found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

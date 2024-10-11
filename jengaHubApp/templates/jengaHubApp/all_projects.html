@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}All Projects{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="color: #3498db;">All Projects</h1>
+    
+    <div class="row">
+        {% for project in projects %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card shadow-sm">
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="Image for {{ project.title }}">
+                    
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                        <a href="{% url 'jengaHubApp:send_message' project.professional.id %}" class="btn btn-primary">Message {{ project.professional.user.username }}</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No projects available.</p>
+            </div>
+        {% endfor %}
+    </div>
+  
+</div>
+{% endblock %}

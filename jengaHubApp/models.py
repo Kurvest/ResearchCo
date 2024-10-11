@@ -31,3 +31,14 @@ class Message(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     feedback = models.BooleanField(default=False)
+
+
+class News(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    image = models.ImageField(upload_to='news/', blank=True, null=True)
+    url = models.URLField(blank=True, null=True)
+    published_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

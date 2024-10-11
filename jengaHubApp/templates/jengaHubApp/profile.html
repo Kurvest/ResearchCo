@@ -1,20 +1,37 @@
+
 {% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
 {% block content %}
-<div class="container">
-    <p>User profiles</p>
+<div class="container mt-5">
+    <h2 class="text-center" style="color: #3498db;">Your Profile</h2>
+    
+    <!-- User Information -->
     <div class="row">
-        {% for professional in professionals %}
-        <div class="col-md-4">
-            <div class="card">
-                <img src="{{ professional.image.url }}" class="card-img-top" alt="{{ professional.user.username }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ professional.user.bio}}</h5>
-                    <p class="card-text">{{ professional.profession }}</p>
-                    <a href="{% url 'jengaHubApp:project' Professional.id %}" class="btn btn-primary">View Projects</a>
-                </div>
-            </div>
+        <div class="col-md-6">
+            <h3>{{ user.username }}</h3>
+            <p>Email: {{ user.email }}</p>
+            <a href="{% url 'jengaHubApp:logout' %}" class="btn btn-warning">Logout</a>
         </div>
-        {% endfor %}
+    </div>
+
+    <!-- User Projects -->
+    <div class="row mt-4">
+        <h4>Your Projects:</h4>
+        <div class="col-12">
+            {% if user_projects %}
+                <ul class="list-group">
+                    {% for project in user_projects %}
+                        <li class="list-group-item">
+                            <a href="{% url 'jengaHubApp:project_detail' project.id %}">{{ project.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No projects found.</p>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

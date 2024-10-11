@@ -5,7 +5,7 @@
 {% block content %}
 <div class="jumbotron text-center bg-primary text-white p-5">
     <h1>Welcome to JengaHub</h1>
-    <p>Explore the latest innovations and connect with professionals.</p>
+    <p>Explore the latest innovations, Showcase your projects, and connect with professionals.</p>
     <a href="{% url 'jengaHubApp:login' %}" class="btn btn-light btn-lg">Login</a>
 </div>
 
@@ -23,7 +23,7 @@
     <div class="col-md-4">
         <h2>Construction News</h2>
         <p>Stay upto date with the current news and innovations in the industry.</p>
-        <a href="{% url 'jengaHubApp:contact' %}" class="btn btn-primary">Get Updates</a>
+        <a href="{% url 'jengaHubApp:trending_news' %}" class="btn btn-primary">Get Updates</a>
     </div>
 </div>
 {% endblock %}

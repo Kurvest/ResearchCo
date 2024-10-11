@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, get_object_or_404
-from .models import Professional, Project
+from .models import Professional, Project, News
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -8,7 +8,52 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.contrib import messages
-from .forms import ProfessionalForm, UserSignUpForm
+from .forms import ProfessionalForm, ProjectForm,UserSignUpForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+
+# Optional: login form if you're not using Django's built-in views
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('jengaHubApp:professional_dashboard')
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, 'jengaHubApp/login.html', {'form': form})
+
+def profile(request):
+    user_projects = Project.objects.filter(professional__user=request.user)
+    context = {
+        'user': request.user,
+        'user_projects': user_projects,
+    }
+    return render(request, 'jengaHubApp/profile.html', context)
+
+
+
+def professional_dashboard(request):
+    try:
+        professional = Professional.objects.get(user=request.user)
+    except Professional.DoesNotExist:
+        messages.error(request, "You do not have a professional profile yet.")
+        return redirect('jengaHubApp:create_professional') 
+    #professional = Professional.objects.get(user=request.user)
+    user_projects = Project.objects.filter(professional=professional)
+    other_professionals = Professional.objects.exclude(id=professional.id)
+
+    context = {
+        'professional': professional,
+        'user_projects': user_projects,
+        'other_professionals': other_professionals,
+    }
+    return render(request, 'jengaHubApp/professional_dashboard.html', context)
 def signup(request):
     if request.method == 'POST':
         form = UserSignUpForm(request.POST)
@@ -119,7 +164,13 @@ def contact(request):
 
 # Profile page view (requires login)
 def profile(request):
-    return render(request, 'jengaHubApp/profile.html')
+    user_projects = Project.objects.filter(professional__user=request.user)
+    context = {
+        'user': request.user,
+        'user_projects': user_projects,
+    }
+    return render(request, 'jengaHubApp/profile.html', context)
+
 
 # About page view
 def about(request):
@@ -144,7 +195,7 @@ def create_professional(request):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Your professional profile has been updated successfully!')
-                return redirect('jengaHubApp:professionals')  # Redirect to a profile list or any desired page
+                return redirect('jengaHubApp:add_project')  # Redirect to a profile list or any desired page
         else:
             form = ProfessionalForm(instance=professional)
     except Professional.DoesNotExist:
@@ -156,8 +207,39 @@ def create_professional(request):
                 professional.user = request.user  # Associate the professional profile with the logged-in user
                 professional.save()
                 messages.success(request, 'Your professional profile has been created successfully!')
-                return redirect('jengaHubApp:professionals')
+                return redirect('jengaHubApp:add_project')
         else:
             form = ProfessionalForm()
 
     return render(request, 'jengaHubApp/create_professional.html', {'form': form})
+
+def add_project(request):
+    # Check if the user has a professional profile
+    professional = get_object_or_404(Professional, user=request.user)
+    
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.professional = professional
+            project.save()
+            messages.success(request, 'Project added successfully!')
+            return redirect('jengaHubApp:projects', professional.id)
+    else:
+        form = ProjectForm()
+
+    return render(request, 'jengaHubApp/add_project.html', {'form': form})
+
+def view_projects(request, professional_id):
+    professional = get_object_or_404(Professional, id=professional_id)
+    projects = professional.projects.all()  # Fetch all projects for the professional
+    return render(request, 'jengaHubApp/projects.html', {'professional': professional, 'projects': projects})
+
+def trending_news(request):
+    # Option 1: Fetch news from the database (for locally stored news)
+    news_list = News.objects.all().order_by('-published_at')[:10]
+    return render(request, 'jengaHubApp/trending_news.html', {'news_list': news_list})
+
+def all_projects(request):
+    projects = Project.objects.all()
+    return render(request, 'jengaHubApp/all_projects.html', {'projects': projects})

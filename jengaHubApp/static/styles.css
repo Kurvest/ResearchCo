@@ -48,3 +48,16 @@
 .card-text {
     color: #6c757d;
 }
+
+.card-text {
+    max-height: 4.5em;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.full-content {
+    display: none;
+}
+.text-center{
+    padding-bottom: 90px;
+}
