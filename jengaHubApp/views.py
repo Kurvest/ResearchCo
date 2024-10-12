@@ -195,7 +195,7 @@ def create_professional(request):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Your professional profile has been updated successfully!')
-                return redirect('jengaHubApp:add_project')  # Redirect to a profile list or any desired page
+                return redirect('jengaHubApp:professional_dashboard')  # Redirect to a profile list or any desired page
         else:
             form = ProfessionalForm(instance=professional)
     except Professional.DoesNotExist:
@@ -224,7 +224,7 @@ def add_project(request):
             project.professional = professional
             project.save()
             messages.success(request, 'Project added successfully!')
-            return redirect('jengaHubApp:projects', professional.id)
+            return redirect('jengaHubApp:professional_dashboard')
     else:
         form = ProjectForm()
 

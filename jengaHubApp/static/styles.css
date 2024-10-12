@@ -14,7 +14,9 @@
 }
 
 
-
+.d-none {
+    display: none; /* Hide the element */
+}
 .container {
     padding-top: 0px;
 }
@@ -55,9 +57,30 @@
     transition: max-height 0.3s ease;
 }
 
-.full-content {
-    display: none;
+
+
+.profile-pic-container {
+    position: relative;
+    top: 0;
+    right: 0;
 }
-.text-center{
-    padding-bottom: 90px;
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
