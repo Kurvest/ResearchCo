@@ -10,32 +10,39 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Find all Read More buttons
             const readMoreButtons = document.querySelectorAll('.read-more-btn');
             const readLessButtons = document.querySelectorAll('.read-less-btn');
     
-            // Attach event listeners to toggle content
-            readMoreButtons.forEach((button, index) => {
+            readMoreButtons.forEach(function(button)   
+     {
                 button.addEventListener('click', function() {
-                    const fullContent = this.closest('.card-body').querySelector('.full-content');
-                    fullContent.classList.remove('d-none');  // Show full content
-                    this.classList.add('d-none');  // Hide Read More button
-                    readLessButtons[index].classList.remove('d-none');  // Show Read Less button
+                    const cardBody = this.closest('.card-body');
+                    const shortContent = cardBody.querySelector('.short-content');
+                    const fullContent = cardBody.querySelector('.full-content');
+                    const readLessButton = cardBody.querySelector('.read-less-btn');
+    
+                    shortContent.classList.add('d-none'); // Hide short content
+                    fullContent.classList.remove('d-none'); // Show full content
+                    this.classList.add('d-none'); // Hide "Read More" button
+                    readLessButton.classList.remove('d-none'); // Show "Read Less" button
                 });
             });
     
-            // Attach event listeners to toggle back to snippet view
-            readLessButtons.forEach((button, index) => {
+            readLessButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
-                    const fullContent = this.closest('.card-body').querySelector('.full-content');
-                    fullContent.classList.add('d-none');  // Hide full content
-                    this.classList.add('d-none');  // Hide Read Less button
-                    readMoreButtons[index].classList.remove('d-none');  // Show Read More button
+                    const cardBody = this.closest('.card-body');
+                    const shortContent = cardBody.querySelector('.short-content');
+                    const fullContent = cardBody.querySelector('.full-content');
+                    const readMoreButton = cardBody.querySelector('.read-more-btn');
+    
+                    fullContent.classList.add('d-none'); // Hide full content
+                    shortContent.classList.remove('d-none'); // Show short content
+                    this.classList.add('d-none'); // Hide "Read Less" button
+                    readMoreButton.classList.remove('d-none'); // Show "Read More" button
                 });
             });
         });
-    </script>
-
+    </script>  
 </head>
 <body>
     <header>
