@@ -1,0 +1,9 @@
+Hello {{ professional_name }},
+
+You have received a new message from {{ sender_name }} ({{ sender_email }}).
+
+Message:
+{{ message_content }}
+
+Best regards,
+JengaHub Team

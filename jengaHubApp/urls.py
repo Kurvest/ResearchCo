@@ -22,12 +22,15 @@ urlpatterns = [
     path('create-professional/', views.create_professional, name='create_professional'),
     path('trending-news/', views.trending_news, name='trending_news'),
     path('all_projects/', views.all_projects, name='all_projects'),
-    path('professional_board', views.professional_dashboard, name='professional_dashboard')
+    path('professional_board', views.professional_dashboard, name='professional_dashboard'),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+
+
 ]
 
 urlpatterns += [
     #path('login/', auth_views.LoginView.as_view(template_name='jengaHubApp/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', views.custom_logout_view, name='logout'),
     path('signup/', views.signup, name='signup'),
     path('login/',views.login_view, name='login'), 
 ]

@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg p-4 border-0 rounded-lg">
+                <h2 class="text-center mb-4 text-primary">Send a Message to {{ profile.user.username }}</h2>
+
+                <!-- Form starts -->
+                <form method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Display form fields without the add_class filter -->
+                    <div class="form-group mb-3">
+                        {{ form.subject.label_tag }}
+                        {{ form.subject }}
+                        <div class="invalid-feedback">Please enter a subject.</div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        {{ form.message.label_tag }}
+                        {{ form.message }}
+                        <div class="invalid-feedback">Please enter a message.</div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Send Email</button>
+                    </div>
+                </form>
+                <!-- Form ends -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+
+{% endblock %}

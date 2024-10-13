@@ -3,12 +3,14 @@ from django.shortcuts import render, get_object_or_404
 from .models import Professional, Project, News
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.template.loader import render_to_string
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.core.mail import send_mail
 from django.contrib import messages
-from .forms import ProfessionalForm, ProjectForm,UserSignUpForm
+from .forms import ProfessionalForm, ProjectForm,UserSignUpForm, EmailForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -37,7 +39,7 @@ def profile(request):
     return render(request, 'jengaHubApp/profile.html', context)
 
 
-
+@login_required
 def professional_dashboard(request):
     try:
         professional = Professional.objects.get(user=request.user)
@@ -94,6 +96,7 @@ def project(request, profile_id):
     projects = Project.objects.filter(professional=profile)
     return render(request, 'jengaHubApp/projects.html', {'profile': profile, 'projects': projects})
 
+@login_required
 def add_project(request):
     if request.method == 'POST':
         # Handle project creation form
@@ -115,39 +118,6 @@ def projects(request, professional_id):
         'projects': projects
     })
 
-def send_message(request, professional_id):
-    if request.method == 'POST':
-        # Retrieve the profile of the professional
-        profile = get_object_or_404(Professional, id=professional_id)
-        
-        # Get the message from the POST data
-        message = request.POST.get('message', '').strip()  # Strip whitespace
-        
-        # Check if the message is not empty
-        if not message:
-            messages.error(request, 'Message cannot be empty.')
-            return redirect('jengaHubApp:projects')  # Redirect back to the profile list
-        
-        try:
-            # Send the email
-            send_mail(
-                subject=f'New Message from {request.user.username}',
-                message=message,
-                from_email=request.user.email,
-                recipient_list=[profile.user.email],
-                fail_silently=False,  # Set to False to raise an error if sending fails
-            )
-            messages.success(request, 'Your message has been sent successfully!')
-        except Exception as e:
-            # Log the error or handle it as needed
-            messages.error(request, f'An error occurred while sending your message: {e}')
-        
-        return redirect('jengaHubApp:projects')
-
-    # Optionally, handle GET requests or other methods
-    messages.error(request, 'Invalid request method.')
-    return redirect('jengaHubApp:professionals')
-
 # Professionals page view
 def professionals(request):
     all_professionals = Professional.objects.all()
@@ -163,6 +133,7 @@ def contact(request):
     return render(request, 'jengahubApp/contact.html')
 
 # Profile page view (requires login)
+@login_required
 def profile(request):
     user_projects = Project.objects.filter(professional__user=request.user)
     context = {
@@ -243,3 +214,56 @@ def trending_news(request):
 def all_projects(request):
     projects = Project.objects.all()
     return render(request, 'jengaHubApp/all_projects.html', {'projects': projects})
+
+
+def custom_logout_view(request):
+    logout(request)
+    return redirect('jengaHubApp:home')  
+    
+@login_required
+def send_message(request, professional_id):
+    # Retrieve the profile of the professional
+    profile = get_object_or_404(Professional, id=professional_id)
+    
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        if form.is_valid():
+            # Extract data from the form
+            subject = form.cleaned_data['subject']
+            message_content = form.cleaned_data['message'].strip()
+            
+            # Check if the message is not empty
+            if not message_content:
+                messages.error(request, 'Message cannot be empty.')
+                return redirect('jengaHubApp:projects')
+
+            # Prepare email content using a template
+            email_context = {
+                'professional_name': profile.user.get_full_name(),
+                'sender_name': request.user.get_full_name(),
+                'sender_email': request.user.email,
+                'message_content': message_content
+            }
+
+            email_body = render_to_string('jengaHubApp/email_template.txt', email_context)
+
+            try:
+                # Send the email
+                send_mail(
+                    subject=subject,
+                    message=email_body,
+                    from_email=request.user.email,
+                    recipient_list=[profile.user.email],
+                    fail_silently=False,  # Set to False to raise an error if sending fails
+                )
+                messages.success(request, 'Your message has been sent successfully!')
+            except Exception as e:
+                # Log the error or handle it as needed
+                messages.error(request, f'An error occurred while sending your message: {e}')
+            
+            return redirect('jengaHubApp:professional_dashboard')
+    else:
+        form = EmailForm()  # Render an empty form for GET requests
+    
+    # Render the form with the professional's profile details
+    return render(request, 'jengaHubApp/send_email.html', {'form': form, 'profile': profile})

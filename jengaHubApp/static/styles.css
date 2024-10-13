@@ -13,10 +13,6 @@
     border: none; 
 }
 
-
-.d-none {
-    display: none; /* Hide the element */
-}
 .container {
     padding-top: 0px;
 }
@@ -83,4 +79,11 @@
     background-color: #2980b9;
     border-color: #2980b9;
 }
+.nav-link {
+    color: #ffffff; /* Initial color of the links */
+    transition: color 0.3s ease; /* Smooth transition effect */
+}
 
+.nav-link:hover {
+    color: #ffcc00; /* Change this to your desired hover color */
+}

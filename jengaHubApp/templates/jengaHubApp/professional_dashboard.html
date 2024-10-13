@@ -21,7 +21,7 @@
   <div class="col-lg-4 mb-5">
     <div class="card shadow-sm">
         <div class="card-header text-center" style="color: #3498db;">
-            <h4>Other Professionals</h4>
+            <h4 style="color:black">Other Professionals</h4>
         </div>
         <div class="card-body">
             {% for other_professional in other_professionals %}
@@ -30,8 +30,8 @@
                     <h5>{{ other_professional.user.username }}</h5>
                     <p>{{ other_professional.profession }}</p>
                     
-                    <a href="{% url 'jengaHubApp:send_message' other_professional.id %}" class="btn btn-primary btn-sm">Message</a>
-                    <a href="{% url 'jengaHubApp:projects' professional.id %}" class="btn btn-primary">View Projects</a>
+                    <a href="{% url 'jengaHubApp:send_message' professional.id %}" class="btn btn-success btn-sm">Message</a>
+                    <a href="{% url 'jengaHubApp:projects' professional.id %}" class="btn btn-success">View Projects</a>
                 </div>
             {% empty %}
                 <p class="text-center text-muted">No other professionals available.</p>

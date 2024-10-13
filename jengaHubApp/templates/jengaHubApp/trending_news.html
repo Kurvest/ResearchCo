@@ -1,3 +1,4 @@
+<!-- jengaHubApp/templates/jengaHubApp/trending_news.html -->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -10,16 +11,26 @@
                 {% if news.image.url %}
                     <img src="{{ news.image.url }}" class="card-img-top" alt="Image for {{ news.title }}">
                 {% endif %}
-                <div class="card-body text-center">
+                <div class="card-body">
                     <h5 class="card-title">{{ news.title }}</h5>
-                    <p class="card-text short-content">
-                        <strong>{{ news.content|truncatewords:20 }}</strong>  <!-- Shorten the content to 20 words -->
+                    <!-- Snippet of the article -->
+                    <p class="card-text">
+                        {% if news.description %}
+                            {{ news.description|truncatewords:20 }}  <!-- Shorten the content to 20 words -->
+                        {% else %}
+                            No description available.
+                        {% endif %}
                     </p>
-                    <p class="card-text full-content d-none">
-                        <strong>{{ news.content }}</strong>  <!-- Full content, initially hidden -->
+
+                    <!-- Full content (initially hidden) -->
+                    <p class=" d-none full-content">
+                        {{ news.content }}
                     </p>
+
+                    <!-- Toggle "Read More" and "Read Less" -->
                     <button class="btn btn-primary read-more-btn">Read More</button>
-                    <button class="btn btn-secondary read-less-btn d-none">Read Less</button> <!-- Initially hidden -->
+                    <button class="btn btn-secondary d-none read-less-btn">Read Less</button>
+
                 </div>
             </div>
         </div>

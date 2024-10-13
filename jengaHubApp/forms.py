@@ -34,3 +34,18 @@ class ProjectForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
         }
+
+
+class EmailForm(forms.Form):
+    subject = forms.CharField(
+        max_length=100, 
+        required=True, 
+        label='Subject',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control'}),
+        required=True,
+        label='Message'
+    )
+
