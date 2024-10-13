@@ -28,7 +28,12 @@ SECRET_KEY = 'django-insecure-t))g_j*hum@r3qp00a1xo94obf@rb32)ddnn704jvs^li3po2a
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/jengahub/'
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/jengahub/'  
+  # Custom login URL
+
   # Redirect to homepage after login
 
 
@@ -43,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Myapps
-    'jengaHubApp'
+    'jengaHubApp',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +67,8 @@ ROOT_URLCONF = 'jengaHub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':   [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / 'templates'], 
+        #'DIRS':   [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
