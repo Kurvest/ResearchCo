@@ -10,59 +10,66 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Find all Read More buttons
             const readMoreButtons = document.querySelectorAll('.read-more-btn');
             const readLessButtons = document.querySelectorAll('.read-less-btn');
     
-            readMoreButtons.forEach(function(button)   
-     {
+            // Attach event listeners to toggle content
+            readMoreButtons.forEach((button, index) => {
                 button.addEventListener('click', function() {
-                    const cardBody = this.closest('.card-body');
-                    const shortContent = cardBody.querySelector('.short-content');
-                    const fullContent = cardBody.querySelector('.full-content');
-                    const readLessButton = cardBody.querySelector('.read-less-btn');
-    
-                    shortContent.classList.add('d-none'); // Hide short content
-                    fullContent.classList.remove('d-none'); // Show full content
-                    this.classList.add('d-none'); // Hide "Read More" button
-                    readLessButton.classList.remove('d-none'); // Show "Read Less" button
+                    const fullContent = this.closest('.card-body').querySelector('.full-content');
+                    fullContent.classList.remove('d-none');  // Show full content
+                    this.classList.add('d-none');  // Hide Read More button
+                    readLessButtons[index].classList.remove('d-none');  // Show Read Less button
                 });
             });
     
-            readLessButtons.forEach(function(button) {
+            // Attach event listeners to toggle back to snippet view
+            readLessButtons.forEach((button, index) => {
                 button.addEventListener('click', function() {
-                    const cardBody = this.closest('.card-body');
-                    const shortContent = cardBody.querySelector('.short-content');
-                    const fullContent = cardBody.querySelector('.full-content');
-                    const readMoreButton = cardBody.querySelector('.read-more-btn');
-    
-                    fullContent.classList.add('d-none'); // Hide full content
-                    shortContent.classList.remove('d-none'); // Show short content
-                    this.classList.add('d-none'); // Hide "Read Less" button
-                    readMoreButton.classList.remove('d-none'); // Show "Read More" button
+                    const fullContent = this.closest('.card-body').querySelector('.full-content');
+                    fullContent.classList.add('d-none');  // Hide full content
+                    this.classList.add('d-none');  // Hide Read Less button
+                    readMoreButtons[index].classList.remove('d-none');  // Show Read More button
                 });
             });
         });
-    </script>  
+    </script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'jengaHubApp:home' %}">JengaHub</a>
+               
+                <a class="navbar-brand" href="{%  static 'jengaHubApp/images/buildhub2.png' %}">JengaHub</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:home' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:all_projects' %}">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:professionals' %}">Professionals</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:home' %}" style="color: black;" 
+                            onmouseover="this.style.color='blue';" 
+                            onmouseout="this.style.color='black';" >Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:all_projects' %}" style="color: black;" 
+                            onmouseover="this.style.color='blue';" 
+                            onmouseout="this.style.color='black';" >Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:professionals' %}"style="color: black;" 
+                            onmouseover="this.style.color='blue';" 
+                            onmouseout="this.style.color='black';" >Professionals</a></li>
                         {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:profile' %}">Profile</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:logout' %}">Logout</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:professional_dashboard' %}" style="color: black;" 
+                                onmouseover="this.style.color='blue';" 
+                                onmouseout="this.style.color='black';">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:logout' %}"style="color: black;" 
+                                onmouseover="this.style.color='blue';" 
+                                onmouseout="this.style.color='black';" >Logout</a></li>
                         {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:login_view' %}">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:signup' %}">Sign Up</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:login' %}" style="color: black;" 
+                                onmouseover="this.style.color='blue';" 
+                                onmouseout="this.style.color='black';">Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:signup' %}" style="color: black;" 
+                                onmouseover="this.style.color='blue';" 
+                                onmouseout="this.style.color='black';">Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -85,5 +92,6 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>
