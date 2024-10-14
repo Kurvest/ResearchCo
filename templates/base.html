@@ -38,14 +38,20 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-               
-                <a class="navbar-brand" href="{%  static 'jengaHubApp/images/buildhub2.png' %}">JengaHub</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"style="padding-top: 0px; padding-bottom: 5px;" >
+            <div class="container-fluid"  style="padding-top: 0px; padding-bottom: 0px;margin-bottom: 0px;">
+                <a class="navbar-brand d-flex align-items-center" href="{% url 'jengaHubApp:home' %}">
+                    <!-- Adjust logo size and alignment -->
+                    <img src="{% static 'jengaHubApp/images/buildhub2.png' %}" 
+                         class="rounded-circle" 
+                         alt="BuildHub Logo"
+                         style="width: 150px; height: 150px; margin-right: 10px; margin-top: 0px">
+                    <span style="font-size: 24px; font-weight: bold;">JengaHub</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav" style="font-weight: bold;"  >
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:home' %}" style="color: black;" 
                             onmouseover="this.style.color='blue';" 
