@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-t))g_j*hum@r3qp00a1xo94obf@rb32)ddnn704jvs^li3po2a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["kurvesmoh.pythonanywhere.com"]
 LOGOUT_REDIRECT_URL = '/jengahub/'
 
 LOGIN_URL = '/accounts/login/'
