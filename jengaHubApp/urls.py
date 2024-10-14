@@ -24,6 +24,8 @@ urlpatterns = [
     path('all_projects/', views.all_projects, name='all_projects'),
     path('professional_board', views.professional_dashboard, name='professional_dashboard'),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('delete_project/<int:project_id>/', views.delete_project, name='delete_project'),
+    path('delete_profile/<int:professional_id>/', views.delete_profile, name='delete_profile'),
 
 
 ]

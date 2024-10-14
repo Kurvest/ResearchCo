@@ -267,3 +267,25 @@ def send_message(request, professional_id):
     
     # Render the form with the professional's profile details
     return render(request, 'jengaHubApp/send_email.html', {'form': form, 'profile': profile})
+
+
+@login_required
+def delete_project(request, project_id):
+    professional = get_object_or_404(Professional, user=request.user)
+
+    project = get_object_or_404(Project, id=project_id, professional=professional)
+    if request.method == 'POST':
+        project.delete()
+        messages.success(request, 'Project has been deleted successfully.')
+        return redirect('jengaHubApp:professional_dashboard')
+    return render(request, 'confirm_delete_project.html', {'project': project})
+
+@login_required
+def delete_profile(request, professional_id):
+    professional = get_object_or_404(Professional, id=professional_id, user=request.user)
+    if request.method == 'POST':
+        # Delete the user profile and all associated projects
+        professional.user.delete()
+        messages.success(request, 'Profile and all associated data have been deleted.')
+        return redirect('jengaHubApp:home')
+    return render(request, 'confirm_delete_profile.html', {'professional': professional})
