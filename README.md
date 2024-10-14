@@ -2,7 +2,7 @@
 
 JengaHub is an online platform that connects professionals in the construction industry with clients seeking services. Users can browse projects, send messages, and manage their profiles seamlessly.
 
-![Alt text](static/jengaHubApp/images/buildhub2.png)
+![Alt text](https://github.com/kurves/JengaHubApp/blob/kurvesMain/jengaHubApp/static/jengaHubApp/buildhub2(1)(1).png)
 
 
 ## Table of Contents
