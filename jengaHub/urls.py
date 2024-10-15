@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jengahub/', include('jengaHubApp.urls', namespace='jengaHubApp')),
+    path('/', include('jengaHubApp.urls', namespace='jengaHubApp')),
 #path('', include('jengaHubApp.urls')),
   path('accounts/login/', auth_views.LoginView.as_view(), name='login'),  # Add this line
 path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
