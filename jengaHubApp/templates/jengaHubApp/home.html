@@ -10,7 +10,16 @@
     <img src="{% static 'jengaHubApp/images/buildhub2.png' %}" alt="Welcome Image" class="img-fluid hero-image">
     <div class="hero-overlay position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center">
         <h1 class="display-3 font-weight-bold mb-4">Welcome to JengaHub</h1>
-        <p class="lead">Explore the latest innovations, showcase your projects, and connect with professionals.</p>
+        <p class="lead" style="margin-bottom: 20px; font-weight:bold; font-size:25px;">
+            Eplore the latest innovations <br>
+            <br>
+            showcase your projects <br>
+            <br>
+            and connect with professionals.
+            <br>
+        </p>
+        <br>
+        <br>
         <a href="{% url 'jengaHubApp:login' %}" class="btn btn-light btn-lg mt-1">Login</a>
     </div>
 </div>
@@ -22,17 +31,17 @@
             <div class="col-md-4">
                 <h2>Professionals</h2>
                 <p>Find top-rated professionals in the construction industry.</p>
-                <a href="{% url 'jengaHubApp:professionals' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black">Find Professionals</a>
+                <a href="{% url 'jengaHubApp:professionals' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;">Find Professionals</a>
             </div>
             <div class="col-md-4">
                 <h2>Showcase</h2>
                 <p>Showcase your work and projects to the world to get clients</p>
-                <a href="{% url 'jengaHubApp:signup' %}" class="btn btn-primary"style="background-color:rgba(11, 149, 173, 0.5); color:black;" >Share Your work</a>
+                <a href="{% url 'jengaHubApp:signup' %}" class="btn btn-primary"style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;" >Share Your work</a>
             </div>
             <div class="col-md-4">
                 <h2>Construction News</h2>
                 <p>Stay upto date with the current news and innovations in the industry.</p>
-                <a href="{% url 'jengaHubApp:trending_news' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black">Get Updates</a>
+                <a href="{% url 'jengaHubApp:trending_news' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;">Get Updates</a>
             </div>
         </div>
     </div>
@@ -59,7 +68,7 @@
     .hero-overlay {
         top: 0;
         left: 0;
-        background: rgba(7, 90, 105, 0.5);
+        background: rgba(11, 149, 175, 0.5);
         padding:100px;
     }
 
@@ -68,6 +77,10 @@
         margin-top: 0;
        
     }
+    .hero-section .lead {
+    margin-bottom: 20px; /* or any preferred space */
+}
+
     /* Card Section */
     .card-body {
         display: flex;
