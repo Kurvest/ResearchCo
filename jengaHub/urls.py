@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from . import views 
+from jengaHubApp import views 
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'), 
-    path('/jengahub', include('jengaHubApp.urls', namespace='jengaHubApp')),
+    path('jengahub/', include('jengaHubApp.urls', namespace='jengaHubApp')),
 #path('', include('jengaHubApp.urls')),
   path('accounts/', include('django.contrib.auth.urls')),
   path('accounts/login/', auth_views.LoginView.as_view(), name='login'),  # Add this line
