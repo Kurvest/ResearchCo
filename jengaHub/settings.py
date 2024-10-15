@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Myapps
-    'jengaHub',
     'jengaHubApp',
     'widget_tweaks',
 ]
