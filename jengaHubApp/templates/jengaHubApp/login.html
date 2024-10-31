@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
@@ -14,10 +13,12 @@
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
             <div class="text-center mt-3">
+                <!-- Link to reset password for users who have forgotten it -->
                 <a href="{% url 'password_reset' %}" class="text-secondary">Forgot Password?</a>
             </div>
             {% if user.is_authenticated %}
             <div class="text-center mt-3">
+                <!-- Link to change password for authenticated users -->
                 <a href="{% url 'password_change' %}" class="text-secondary">Change Password</a>
             </div>
             {% endif %}
