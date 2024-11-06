@@ -13,6 +13,8 @@ from django.contrib import messages
 from .forms import ProfessionalForm, ProjectForm,UserSignUpForm, EmailForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Advertisement, RentalListing  # Assuming models are defined
+
 
 # Optional: login form if you're not using Django's built-in views
 def login_view(request):
@@ -289,3 +291,12 @@ def delete_profile(request, professional_id):
         messages.success(request, 'Profile and all associated data have been deleted.')
         return redirect('jengaHubApp:home')
     return render(request, 'confirm_delete_profile.html', {'professional': professional})
+
+
+def advertisement_list(request):
+    ads = Advertisement.objects.all()  # Fetch all advertisements
+    return render(request, 'jengaHubApp/advertisement_list.html', {'ads': ads})
+
+def rental_list(request):
+    rentals = RentalListing.objects.all()  # Fetch all rental listings
+    return render(request, 'jengaHubApp/rental_list.html', {'rentals': rentals})
