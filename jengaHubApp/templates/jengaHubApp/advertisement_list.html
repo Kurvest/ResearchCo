@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="color: #3498db;">Advertisements</h1>
+    <div class="row">
+        {% for ad in ads %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card shadow-sm">
+                {% if ad.image.url %}
+                    <img src="{{ ad.image.url }}" class="card-img-top" alt="Image for {{ ad.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ ad.title }}</h5>
+                    <p class="card-text">
+                        {{ ad.description|truncatewords:20 }}
+                    </p>
+                    <button class="btn btn-primary">View Details</button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">No advertisements found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

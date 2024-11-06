@@ -26,9 +26,10 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('delete_project/<int:project_id>/', views.delete_project, name='delete_project'),
     path('delete_profile/<int:professional_id>/', views.delete_profile, name='delete_profile'),
-
-
+    path('advertisements/', views.advertisement_list, name='advertisement_list'),
+    path('rentals/', views.rental_list, name='rental_list'),
 ]
+
 
 urlpatterns += [
     #path('login/', auth_views.LoginView.as_view(template_name='jengaHubApp/login.html'), name='login'),
