@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4" style="color: #3498db;">Rental Listings</h1>
+    <div class="row">
+        {% for rental in rentals %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card shadow-sm">
+                {% if rental.image.url %}
+                    <img src="{{ rental.image.url }}" class="card-img-top" alt="Image for {{ rental.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ rental.title }}</h5>
+                    <p class="card-text">
+                        {{ rental.description|truncatewords:20 }}
+                    </p>
+                    <button class="btn btn-primary">View Details</button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">No rental listings found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
