@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}JengaHub{% endblock %}</title>
+    <title>{% block title %}ResearchCo{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script>
@@ -40,13 +40,8 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light"style="padding-top: 0px; padding-bottom: 5px;" >
             <div class="container-fluid"  style="padding-top: 0px; padding-bottom: 0px;margin-bottom: 0px;">
-                <a class="navbar-brand d-flex align-items-center" href="{% url 'jengaHubApp:home' %}">
-                    <!-- Adjust logo size and alignment -->
-                    <img src="{% static 'jengaHubApp/images/buildhub2.png' %}" 
-                         class="rounded-circle" 
-                         alt="BuildHub Logo"
-                         style="width: 150px; height: 150px; margin-right: 10px; margin-top: 0px">
-                    <span style="font-size: 24px; font-weight: bold;">JengaHub</span>
+              
+                    <span style="font-size: 24px; font-weight: bold;">ResearchCo</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -58,10 +53,10 @@
                             onmouseout="this.style.color='black';" >Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:all_projects' %}" style="color: black;" 
                             onmouseover="this.style.color='blue';" 
-                            onmouseout="this.style.color='black';" >Projects</a></li>
+                            onmouseout="this.style.color='black';" >Research Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:professionals' %}"style="color: black;" 
                             onmouseover="this.style.color='blue';" 
-                            onmouseout="this.style.color='black';" >Professionals</a></li>
+                            onmouseout="this.style.color='black';" >Researchers</a></li>
                         {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'jengaHubApp:professional_dashboard' %}" style="color: black;" 
                                 onmouseover="this.style.color='blue';" 

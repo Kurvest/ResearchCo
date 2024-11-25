@@ -7,15 +7,15 @@
 
 <!-- Hero Section with Background Image and Welcome Text -->
 <div class="hero-section position-relative text-white text-center">
-    <img src="{% static 'jengaHubApp/images/buildhub2.png' %}" alt="Welcome Image" class="img-fluid hero-image">
+  
     <div class="hero-overlay position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center">
-        <h1 class="display-3 font-weight-bold mb-4">Welcome to JengaHub</h1>
+        <h1 class="display-3 font-weight-bold mb-4">Welcome to ResearchCo</h1>
         <p class="lead" style="margin-bottom: 20px; font-weight:bold; font-size:25px;">
-            Eplore the latest innovations <br>
+            Share Your Research Ideas <br>
             <br>
-            showcase your projects <br>
+            Connect with Investors <br>
             <br>
-            and connect with professionals.
+            and Collaborate with others
             <br>
         </p>
         <br>
@@ -29,19 +29,19 @@
 <div class="container mt-5">
         <div class="row mt-5">
             <div class="col-md-4">
-                <h2>Professionals</h2>
-                <p>Find top-rated professionals in the construction industry.</p>
-                <a href="{% url 'jengaHubApp:professionals' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;">Find Professionals</a>
+                <h2>Find Investors</h2>
+                <p>Find support from a wide pool of investors for your project</p>
+                <a href="{% url 'jengaHubApp:professionals' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;">Get Funding</a>
             </div>
             <div class="col-md-4">
                 <h2>Showcase</h2>
-                <p>Showcase your work and projects to the world to get clients</p>
+                <p>Showcase your Research idea and collaborate with other researchers</p>
                 <a href="{% url 'jengaHubApp:signup' %}" class="btn btn-primary"style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;" >Share Your work</a>
             </div>
             <div class="col-md-4">
-                <h2>Construction News</h2>
-                <p>Stay upto date with the current news and innovations in the industry.</p>
-                <a href="{% url 'jengaHubApp:trending_news' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;">Get Updates</a>
+                <h2>Seamless Matching</h2>
+                <p>Get matched with researchers working on similar projects</p>
+                <a href="{% url 'jengaHubApp:trending_news' %}" class="btn btn-primary" style="background-color:rgba(11, 149, 173, 0.5); color:black; font-weight:bold;">Get Matched</a>
             </div>
         </div>
     </div>
